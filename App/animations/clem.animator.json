@@ -1,0 +1,41 @@
+{
+	"parameters": [
+		{
+			"name": "walking",
+			"type": "boolean"
+		}
+	],
+	"states": [
+		{
+			"name": "idle",
+			"animation": "clem_idle",
+			"default": true
+		},
+		{
+			"name": "walking",
+			"animation": "clem_walk"
+		}
+	],
+	"transitions": [
+		{
+			"from": "idle",
+			"to": "walking",
+			"conditions": [
+				{
+					"parameter": "walking",
+					"value": true
+				}
+			]
+		},
+		{
+			"from": "walking",
+			"to": "idle",
+			"conditions": [
+				{
+					"parameter": "walking",
+					"value": false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,69 @@
+{
+	"spritesMeta": [
+		{
+			"name": "clem_idle",
+			"bounds": {
+				"min": {
+					"x": 0,
+					"y": 0
+				},
+				"max": {
+					"x": 14,
+					"y": 32
+				}
+			}
+		},
+		{
+			"name": "clem_walk_0",
+			"bounds": {
+				"min": {
+					"x": 15,
+					"y": 0
+				},
+				"max": {
+					"x": 30,
+					"y": 32
+				}
+			}
+		},
+		{
+			"name": "clem_walk_1",
+			"bounds": {
+				"min": {
+					"x": 32,
+					"y": 0
+				},
+				"max": {
+					"x": 46,
+					"y": 32
+				}
+			}
+		},
+		{
+			"name": "clem_jump",
+			"bounds": {
+				"min": {
+					"x": 49,
+					"y": 0
+				},
+				"max": {
+					"x": 65,
+					"y": 32
+				}
+			}
+		},
+		{
+			"name": "clem_loot",
+			"bounds": {
+				"min": {
+					"x": 67,
+					"y": 0
+				},
+				"max": {
+					"x": 88,
+					"y": 32
+				}
+			}
+		}
+	]
+}

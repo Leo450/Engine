@@ -1,0 +1,24 @@
+{
+	"name": "clem_walk",
+	"duration": 1,
+	"stepsMeta": [
+		{
+			"time": 0,
+			"changes": [
+				{
+					"component": "renderer.sprite.name",
+					"value": "clem_walk_0"
+				}
+			]
+		},
+		{
+			"time": 0.5,
+			"changes": [
+				{
+					"component": "renderer.sprite.name",
+					"value": "clem_walk_1"
+				}
+			]
+		}
+	]
+}
