@@ -10,10 +10,7 @@ var Sprite = function(gameObject, imgFilePath)
 	this.name = null;
 	this.width = null;
 	this.height = null;
-	this.offset = {
-		x: null,
-		y: null
-	};
+	this.offset = new Vector2();
 
 	this.currentSpriteName = null;
 	this.needRender = false;

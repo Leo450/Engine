@@ -1,14 +1,18 @@
 var scene = new Scene(50);
 
 scene.addGameObject("clem", function(gameObject){
-	gameObject.addComponent("renderer", new SpriteRenderer(gameObject, new Sprite(gameObject, "/App/assets/img/clem.png")));
 	gameObject.addComponent("animatorController", new AnimatorController(gameObject, "/App/animations/clem.animator.json"));
 	gameObject.addComponent("playerController", new PlayerController(gameObject));
+	gameObject.addComponent("motion", new Motion(gameObject));
+	gameObject.addComponent("renderer", new SpriteRenderer(gameObject, new Sprite(gameObject, "/App/assets/img/clem.png")));
 });
 
 scene.run();
 
 
+
+
+/*
 var a = {
 	x: 0,
 	y: 0
@@ -42,4 +46,4 @@ var t = - (a.x * e.y - i.x * e.y - e.x * a.y + e.x * i.y) / denom;
 var u = - (-d.x * a.y + d.x * i.y + d.x * a.x - d.y * i.x) / denom;
 
 console.log(t);
-console.log(u);
+console.log(u);*/

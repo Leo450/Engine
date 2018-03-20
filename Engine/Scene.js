@@ -2,6 +2,7 @@ var Scene = function(fixedUpdateRefreshRate)
 {
 
 	this.gameObjects = {};
+	this.colliders = [];
 
 	var $window = $(window);
 	var windowWidth = $window.width();
@@ -9,10 +10,7 @@ var Scene = function(fixedUpdateRefreshRate)
 	this.screenInfo = {
 		width: windowWidth,
 		height: windowHeight,
-		center: {
-			x: windowWidth / 2,
-			y: windowHeight / 2
-		}
+		center: new Vector2(windowWidth / 2, windowHeight / 2)
 	};
 	this.nbRefresh = 0;
 

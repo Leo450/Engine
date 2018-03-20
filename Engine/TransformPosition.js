@@ -1,12 +1,13 @@
 var TransformPosition = function(transform)
 {
 
+	Vector2.call(this);
+
 	this.transform = transform;
 
-	this.x = 0;
-	this.y = 0;
-
 };
+TransformPosition.prototype = Object.create(Vector2.prototype);
+TransformPosition.prototype.constructor = TransformPosition;
 
 TransformPosition.prototype.getRealX = function()
 {

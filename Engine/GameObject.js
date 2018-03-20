@@ -7,6 +7,7 @@ var GameObject = function(scene, name)
 	this.componentsNames = [];
 
 	this.transform = new Transform(this);
+	this.bounds = new Bounds(this);
 	this.renderer = null;
 
 	this.ready = null;

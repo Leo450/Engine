@@ -69,6 +69,10 @@ SpriteRenderer.prototype.update = function()
 			transform: cssTransformValue
 		});
 
+	this.gameObject.bounds.width = this.sprite.width;
+	this.gameObject.bounds.height = this.sprite.height;
+	this.gameObject.bounds.compute();
+
 	this.sprite.needRender = false;
 	this.needUpdate = false;
 

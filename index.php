@@ -15,10 +15,13 @@
 <script type="text/javascript" src="Engine/Tools.js"></script>
 <script type="text/javascript" src="Engine/FileLoader.js"></script>
 <script type="text/javascript" src="Engine/GameObjectComponent.js"></script>
+<script type="text/javascript" src="Engine/Vector2.js"></script>
 <script type="text/javascript" src="Engine/Animation.js"></script>
 <script type="text/javascript" src="Engine/AnimatorController.js"></script>
+<script type="text/javascript" src="Engine/Bounds.js"></script>
 <script type="text/javascript" src="Engine/GameObject.js"></script>
 <script type="text/javascript" src="Engine/Input.js"></script>
+<script type="text/javascript" src="Engine/Motion.js"></script>
 <script type="text/javascript" src="Engine/Scene.js"></script>
 <script type="text/javascript" src="Engine/Sprite.js"></script>
 <script type="text/javascript" src="Engine/SpriteRenderer.js"></script>
