@@ -1,0 +1,55 @@
+.homepage{
+	flex-direction:column;
+	padding-bottom:100px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1f1823+0,1f1823+60,693b38+100 */
+	background: #1f1823; /* Old browsers */
+	background: -moz-linear-gradient(top, #1f1823 0%, #1f1823 60%, #693b38 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1f1823 0%,#1f1823 60%,#693b38 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1f1823 0%,#1f1823 60%,#693b38 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f1823', endColorstr='#693b38',GradientType=0 ); /* IE6-9 */
+}
+
+.homepage__text{
+	text-align:left;
+}
+
+.homepage__text > *{
+	margin-top:-.125em;
+	line-height:1.2em;
+}
+.homepage__text .small{
+	color:#5D525F;
+	font-size:3rem;
+}
+.homepage__text .big{
+	color:#DF4959;
+	font-size:8rem;
+}
+.homepage__text .medium{
+	color:#F2DEB4;
+	font-size:5rem;
+}
+
+.homepage__links{
+	position:absolute;
+	bottom:50px;
+	left:50%;
+	display:flex;
+	justify-content:center;
+	-webkit-transform:translateX(-50%);
+	-moz-transform:translateX(-50%);
+	-ms-transform:translateX(-50%);
+	-o-transform:translateX(-50%);
+	transform:translateX(-50%);
+}
+.homepage__links a{
+	padding:5px 20px;
+	border-left:2px solid white;
+	font-family:donau_uppercaseneue;
+	text-transform:uppercase;
+	color:white;
+	font-size:2rem;
+}
+.homepage__links a:first-child{
+	border-left:none;
+}

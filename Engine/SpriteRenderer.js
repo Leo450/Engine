@@ -38,9 +38,13 @@ SpriteRenderer.prototype.render = function()
 
 	this.$element = $('<div class="' + this.gameObject.name + '"></div>');
 
+	this.gameObject.bounds.width = this.sprite.width;
+	this.gameObject.bounds.height = this.sprite.height;
+	this.gameObject.bounds.refresh();
+
 	this.update();
 
-	$("body").append(this.$element);
+	this.gameObject.scene.$container.append(this.$element);
 
 };
 SpriteRenderer.prototype.update = function()
@@ -52,7 +56,9 @@ SpriteRenderer.prototype.update = function()
 		return;
 	}
 
-	var cssTransformValue = "scale(" + ((this.flipX)? "-1" : "1") + ", " + ((this.flipY)? "-1" : "1") + ")";
+	var cssTransformValue = "scale(" + ((this.flipX)? (-1 * this.gameObject.transform.scale.x) : (this.gameObject.transform.scale.x)) + ", " + ((this.flipY)? (-1 * this.gameObject.transform.scale.y) : (this.gameObject.transform.scale.y)) + ")";
+
+	var screenPosition = ScreenSpace.convertWorldPoint(this.gameObject.transform.position);
 
 	this.$element
 		.css({
@@ -60,18 +66,14 @@ SpriteRenderer.prototype.update = function()
 			backgroundPosition: "-" + this.sprite.offset.x + "px " + this.sprite.offset.y + "px",
 			width: this.sprite.width,
 			height: this.sprite.height,
-			left: this.gameObject.transform.position.getRealX() - this.sprite.width / 2,
-			top: this.gameObject.transform.position.getRealY() - this.sprite.height / 2,
+			left: screenPosition.x - this.sprite.width / 2,
+			top: screenPosition.y - this.sprite.height / 2,
 			"-webkit-transform": cssTransformValue,
 			"-moz-transform": cssTransformValue,
 			"-ms-transform": cssTransformValue,
 			"-o-transform": cssTransformValue,
 			transform: cssTransformValue
 		});
-
-	this.gameObject.bounds.width = this.sprite.width;
-	this.gameObject.bounds.height = this.sprite.height;
-	this.gameObject.bounds.compute();
 
 	this.sprite.needRender = false;
 	this.needUpdate = false;

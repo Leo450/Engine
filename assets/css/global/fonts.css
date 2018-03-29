@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'bebasregular';
+	src: url('../../fonts/bebas___-webfont.woff2') format('woff2'),
+	url('../../fonts/bebas___-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'donau_uppercaseneue';
+	src: url('../../fonts/donau_neue_uppercase-webfont.woff2') format('woff2'),
+	url('../../fonts/donau_neue_uppercase-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'muller_narrowlight';
+	src: url('../../fonts/mullernarrow-light-webfont.woff2') format('woff2'),
+	url('../../fonts/mullernarrow-light-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+body{
+	font-family:muller_narrowlight;
+}
+
+.font-bebas{
+	font-family:bebasregular;
+	word-spacing:.8rem;
+	letter-spacing:-4px;
+}

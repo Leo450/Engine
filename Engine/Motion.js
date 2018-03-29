@@ -36,19 +36,17 @@ Motion.prototype.fixedUpdate = function()
 		}
 	}
 
-	if(this.gameObject.collider){
-		this.gameObject.collider.restrictMotion(this.velocity);
-	}
+};
+Motion.prototype.afterFixedUpdate = function()
+{
 
 	if(this.velocity.x != 0){
-		this.gameObject.transform.position.x += this.velocity.x * Time.fixedDeltaTime;
+		this.gameObject.transform.setPosition(this.gameObject.transform.position.x + this.velocity.x * Time.fixedDeltaTime);
 		this.gameObject.renderer.needUpdate = true;
 	}
 	if(this.velocity.y != 0){
-		this.gameObject.transform.position.y += this.velocity.y * Time.fixedDeltaTime;
+		this.gameObject.transform.setPosition(null, this.gameObject.transform.position.y + this.velocity.y * Time.fixedDeltaTime);
 		this.gameObject.renderer.needUpdate = true;
 	}
-
-	this.gameObject.bounds.compute();
 
 };

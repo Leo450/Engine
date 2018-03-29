@@ -1,0 +1,10 @@
+.title{
+	font-family:donau_uppercaseneue;
+	font-size:5rem;
+	text-transform:uppercase;
+	font-weight:bold;
+	color:#2D2133;
+}
+.title-small{
+	font-size:3rem;
+}

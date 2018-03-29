@@ -22,3 +22,11 @@ PlayerController.prototype.fixedUpdate = function()
 	}
 
 };
+PlayerController.prototype.afterFixedUpdate = function()
+{
+
+	if(this.gameObject.collider.colliding.bottom && Input.getKeyDown("Jump")){
+		this.gameObject.motion.velocity.y = 100;
+	}
+
+};

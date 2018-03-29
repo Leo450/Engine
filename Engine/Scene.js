@@ -1,22 +1,16 @@
-var Scene = function(fixedUpdateRefreshRate)
+var Scene = function(settings)
 {
+
+	this.$container = settings.container;
 
 	this.gameObjects = {};
 	this.colliders = [];
-
-	var $window = $(window);
-	var windowWidth = $window.width();
-	var windowHeight = $window.height();
-	this.screenInfo = {
-		width: windowWidth,
-		height: windowHeight,
-		center: new Vector2(windowWidth / 2, windowHeight / 2)
-	};
-	this.nbRefresh = 0;
+	this.nbUpdate = 0;
+	this.nbFixedUpdate = 0;
 
 	this.ready = null;
 
-	Time.fixedDeltaTime = 1 / fixedUpdateRefreshRate;
+	Time.fixedDeltaTime = 1 / settings.physicsRefreshRate;
 
 };
 
@@ -78,16 +72,20 @@ Scene.prototype.update = function(timestamp)
 
 	Time.update(timestamp);
 
+	var afterUpdateCalls = [];
+
 	for(var gameObjectName in this.gameObjects){
 		var gameObject = this.gameObjects[gameObjectName];
 
-		gameObject.update();
+		afterUpdateCalls = afterUpdateCalls.concat(gameObject.executeMethodForComponents("update"));
 
 	}
 
+	this.executeAfterMethodCalls(afterUpdateCalls);
+
 	Time.updateForNextFrame(timestamp);
 
-	this.nbRefresh++;
+	this.nbUpdate++;
 
 	window.requestAnimationFrame(function(timestamp){
 		self.update(timestamp);
@@ -99,16 +97,33 @@ Scene.prototype.fixedUpdate = function()
 
 	var self = this;
 
+	var afterFixedUpdateCalls = [];
+
 	for(var gameObjectName in this.gameObjects){
 		var gameObject = this.gameObjects[gameObjectName];
 
-		gameObject.fixedUpdate();
+		afterFixedUpdateCalls = afterFixedUpdateCalls.concat(gameObject.executeMethodForComponents("fixedUpdate"));
 
 	}
+
+	this.executeAfterMethodCalls(afterFixedUpdateCalls);
+
+	this.nbFixedUpdate++;
 
 	setTimeout(function(){
 		self.fixedUpdate();
 	}, Time.fixedDeltaTime * 1000);
+
+};
+Scene.prototype.executeAfterMethodCalls = function(afterMethodCalls)
+{
+
+	for(var i = 0; i < afterMethodCalls.length; i++){
+		var afterMethodCall = afterMethodCalls[i];
+
+		afterMethodCall.context[afterMethodCall.methodName]();
+
+	}
 
 };
 Scene.prototype.addGameObject = function(name, callback)

@@ -82,7 +82,7 @@ Sprite.prototype.loadSpriteMetaFile = function()
 Sprite.prototype.setSprite = function(spriteName)
 {
 
-	if(spriteName == this.currentSpriteName){
+	if(spriteName === this.currentSpriteName){
 		return;
 	}
 

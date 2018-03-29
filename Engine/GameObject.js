@@ -7,7 +7,7 @@ var GameObject = function(scene, name)
 	this.componentsNames = [];
 
 	this.transform = new Transform(this);
-	this.bounds = new Bounds(this);
+	this.bounds = new Bounds();
 	this.renderer = null;
 
 	this.ready = null;
@@ -17,7 +17,11 @@ var GameObject = function(scene, name)
 GameObject.prototype.load = function()
 {
 
-	var readyPromises = [this.renderer.ready];
+	var readyPromises = [];
+
+	if(this.renderer.ready !== undefined){
+		readyPromises.push(this.renderer.ready);
+	}
 
 	if(this.animation){
 		readyPromises.push(this.animation.ready);
@@ -37,29 +41,33 @@ GameObject.prototype.addComponent = function(componentName, component)
 	this.componentsNames.push(componentName);
 
 };
-GameObject.prototype.update = function()
+GameObject.prototype.executeMethodForComponents = function(methodName)
 {
+
+	var afterMethodName = "after" + methodName[0].toUpperCase() + methodName.slice(1);
+
+	var afterMethodCalls = [];
 
 	for(var i = 0; i < this.componentsNames.length; i++){
 		var componentName = this.componentsNames[i];
 
-		if(this[componentName] !== undefined && this[componentName] !== null && this[componentName].update){
-			this[componentName].update();
+		if(this[componentName]){
+
+			if(this[componentName][methodName]){
+				this[componentName][methodName]();
+			}
+
+			if(this[componentName][afterMethodName]){
+				afterMethodCalls.push({
+					context: this[componentName],
+					methodName: afterMethodName
+				});
+			}
+
 		}
 
 	}
 
-};
-GameObject.prototype.fixedUpdate = function()
-{
-
-	for(var i = 0; i < this.componentsNames.length; i++){
-		var componentName = this.componentsNames[i];
-
-		if(this[componentName] !== undefined && this[componentName] !== null && this[componentName].fixedUpdate){
-			this[componentName].fixedUpdate();
-		}
-
-	}
+	return afterMethodCalls;
 
 };

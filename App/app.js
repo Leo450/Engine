@@ -1,49 +1,57 @@
-var scene = new Scene(50);
+var scene = null;
 
-scene.addGameObject("clem", function(gameObject){
-	gameObject.addComponent("animatorController", new AnimatorController(gameObject, "/App/animations/clem.animator.json"));
-	gameObject.addComponent("playerController", new PlayerController(gameObject));
-	gameObject.addComponent("motion", new Motion(gameObject));
-	gameObject.addComponent("renderer", new SpriteRenderer(gameObject, new Sprite(gameObject, "/App/assets/img/clem.png")));
+$(document).ready(function(){
+
+	setTimeout(function(){
+
+		scene = new Scene({
+			physicsRefreshRate: 50,
+			container: $('body > #engine-container')
+		});
+
+		scene.addGameObject("clem", function(gameObject){
+			gameObject.transform.position = WorldSpace.convertScreenPoint(new Vector2(ScreenSpace.bounds.center.x, ScreenSpace.bounds.max.y));
+			//gameObject.transform.setScale(new Vector2(2, 2));
+			gameObject.addComponent("animatorController", new AnimatorController(gameObject, "/App/animations/clem.animator.json"));
+			gameObject.addComponent("collider", new BoxCollider(gameObject));
+			gameObject.addComponent("playerController", new PlayerController(gameObject));
+			gameObject.addComponent("motion", new Motion(gameObject, null, new Vector2(0, -100)));
+			gameObject.addComponent("renderer", new SpriteRenderer(gameObject, new Sprite(gameObject, "/App/assets/img/clem.png")));
+		});
+
+		$('.homepage__text > *').each(function(index){
+
+			var $element = $(this);
+
+			scene.addGameObject("text" + index, function(gameObject){
+				gameObject.addComponent("collider", new BoxCollider(gameObject, true));
+				gameObject.addComponent("renderer", new DOMElementRenderer(gameObject, $element));
+			});
+
+		});
+
+		/*scene.addGameObject("floor", function(gameObject){
+		 gameObject.transform.position.y = -50;
+		 gameObject.addComponent("collider", new BoxCollider(gameObject, true));
+		 gameObject.addComponent("renderer", new HTMLElementRenderer(gameObject, {
+		 width: "500",
+		 height: "10",
+		 backgroundColor: "red"
+		 }));
+		 });
+		 scene.addGameObject("obstacle", function(gameObject){
+		 gameObject.transform.position.y = -40;
+		 gameObject.transform.position.x = -40;
+		 gameObject.addComponent("collider", new BoxCollider(gameObject, true));
+		 gameObject.addComponent("renderer", new HTMLElementRenderer(gameObject, {
+		 width: "10",
+		 height: "10",
+		 backgroundColor: "red"
+		 }));
+		 });*/
+
+		scene.run();
+
+	}, 1000);
+
 });
-
-scene.run();
-
-
-
-
-/*
-var a = {
-	x: 0,
-	y: 0
-};
-var b = {
-	x: 2,
-	y: 0
-};
-
-var i = {
-	x: 1,
-	y: 1
-};
-var j = {
-	x: 1,
-	y: -2
-};
-
-var d = {
-	x: b.x - a.x,
-	y: b.y - a.y
-};
-var e = {
-	x: j.x - i.x,
-	y: j.y - i.y
-};
-
-var denom = d.x * e.y - d.y * e.x;
-
-var t = - (a.x * e.y - i.x * e.y - e.x * a.y + e.x * i.y) / denom;
-var u = - (-d.x * a.y + d.x * i.y + d.x * a.x - d.y * i.x) / denom;
-
-console.log(t);
-console.log(u);*/
